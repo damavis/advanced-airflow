@@ -19,8 +19,6 @@ from datetime import timedelta
 
 from airflow import DAG
 from airflow.operators.dummy import DummyOperator
-from airflow.operators.trigger_dagrun import TriggerDagRunOperator
-from airflow.sensors.external_task import ExternalTaskSensor
 from airflow.utils.dates import days_ago
 
 DAG_NAME = 'problem_a'
