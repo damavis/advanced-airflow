@@ -13,7 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Cross-DAG code for DAG B"""
-
 from datetime import timedelta
 
 from airflow import DAG
@@ -49,7 +48,7 @@ with DAG(dag_id=DAG_NAME,
         dag=dag,
         external_dag_id='operations_a',
         external_task_id='calculate_expenses',
-        timeout=60)
+        check_existence=True)
 
     outcome_bookkeep = DummyOperator(task_id='outcome_bookkeep',
                                      dag=dag)

@@ -23,7 +23,7 @@ from airflow.utils.dates import days_ago
 
 DAG_NAME = 'problem_a'
 DEFAULT_ARGS = {
-    'owner': 'Operations+finance',
+    'owner': 'Operations+Finance',
     'depends_on_past': False,
     'start_date': days_ago(2),
     'email': ['operations+airflow@example.com', 'finance+airflow@example.com'],
@@ -38,19 +38,19 @@ with DAG(dag_id=DAG_NAME,
          dagrun_timeout=timedelta(minutes=10),
          schedule_interval=None) as dag:
 
-    calculate_revenue = DummyOperator(task_id='calculate_revenue',
+    calculate_revenue = DummyOperator(task_id='operations_calculate_revenue',
                                       dag=dag)
 
-    income_bookkeep = DummyOperator(task_id='income_bookkeep',
+    income_bookkeep = DummyOperator(task_id='finances_income_bookkeep',
                                     dag=dag)
 
-    validate_income = DummyOperator(task_id='validate_income',
+    validate_income = DummyOperator(task_id='finances_validate_income',
                                     dag=dag)
 
-    calculate_expenses = DummyOperator(task_id='calculate_expenses',
+    calculate_expenses = DummyOperator(task_id='operations_calculate_expenses',
                                        dag=dag)
 
-    outcome_bookkeep = DummyOperator(task_id='outcome_bookkeep',
+    outcome_bookkeep = DummyOperator(task_id='finances_outcome_bookkeep',
                                      dag=dag)
 
     operations_a_report = DummyOperator(task_id='operations_a_report',

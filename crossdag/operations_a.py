@@ -13,8 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 """Cross-DAG code for DAG A"""
-
-
 from datetime import timedelta
 
 from airflow import DAG
@@ -42,19 +40,20 @@ with DAG(dag_id=DAG_NAME,
     calculate_revenue = DummyOperator(task_id='calculate_revenue',
                                       dag=dag)
 
-    trigger_finances_a = TriggerDagRunOperator(task_id='trigger_finances_b',
+    trigger_finances_a = TriggerDagRunOperator(task_id='trigger_finances_a',
                                                dag=dag,
-                                               trigger_dag_id='dag_b',
+                                               trigger_dag_id='finances_a',
                                                execution_date='{{ execution_date }}')
 
     calculate_expenses = DummyOperator(task_id='calculate_expenses',
                                        dag=dag)
 
     wait_finances_a_expenses_bookkept = ExternalTaskSensor(
-        task_id='wait_finances_a_expenses_bookkept',
+        task_id='wait_finances_a_outcome_bookkeep',
         dag=dag,
         external_dag_id='finances_a',
-        external_task_id='expenses_bookkept')
+        external_task_id='outcome_bookkeep',
+        check_existence=True)
 
     operations_a_report = DummyOperator(task_id='operations_a_report',
                                         dag=dag)
