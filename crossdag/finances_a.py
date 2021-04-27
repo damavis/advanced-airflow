@@ -22,7 +22,7 @@ from airflow.utils.dates import days_ago
 
 DAG_NAME = 'finances_a'
 DEFAULT_ARGS = {
-    'owner': 'Airflow',
+    'owner': 'Finances',
     'depends_on_past': False,
     'start_date': days_ago(2),
     'email': ['finances+airflow@example.com'],
