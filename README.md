@@ -14,11 +14,16 @@ steps to install the necessary tools:
 * [Install Docker](https://docs.docker.com/engine/install/)
 * [Install Compose](https://docs.docker.com/compose/install/)
 
+## Customizing your image
+
+If you need to install extra software on your image, please, use the
+[Dockerfile](Dockerfile) to extend the official image.
+
 ## Start/Stop Airflow
 
 To start and stop Airflow platform, please, use the following scripts,
 their will ensure to run it using your current user to avoid permission
-changes.
+changes. It will also build your Airflow image.
 
 ```bash
 ./airflow-start.sh
