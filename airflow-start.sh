@@ -1,7 +1,11 @@
 #!/usr/bin/env bash
-export AIRFLOW_IMAGE_NAME=$(basename `pwd`)/airflow
-export AIRFLOW_UID=$(id -u "${USER}")
-export AIRFLOW_GID=0
+AIRFLOW_IMAGE_NAME=$(basename "$(pwd)")/airflow
+AIRFLOW_UID=$(id -u "${USER}")
+AIRFLOW_GID=0
+
+export AIRFLOW_IMAGE_NAME
+export AIRFLOW_UID
+export AIRFLOW_GID
 
 docker build -t "${AIRFLOW_IMAGE_NAME}" .
 docker-compose up -d
