@@ -17,7 +17,8 @@ steps to install the necessary tools:
 ## Customizing your image
 
 If you need to install extra software on your image, please, use the
-[Dockerfile](Dockerfile) to extend the official image.
+[Dockerfile](Dockerfile) to extend the official image. Also, you can
+add your requirements in [requirements.txt](requirements.txt).
 
 ## Start/Stop Airflow
 

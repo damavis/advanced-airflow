@@ -1,3 +1,4 @@
-FROM apache/airflow:master-python3.8
+FROM apache/airflow:2.0.2-python3.8
 
-RUN pip install airflow-pentaho-plugin==1.0.7
+COPY ./requirements.txt requirements.txt
+RUN pip install -r requirements.txt
