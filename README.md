@@ -31,6 +31,23 @@ changes. It will also build your Airflow image.
 ./airflow-stop.sh
 ```
 
+## Access Airflow UI
+
+In order to access Airflow Webserver, follow this link:
+[http://localhost:8080](http://localhost:8080). Default credentials are:
+
+```
+Username: airflow
+Password: airflow
+```
+
+You can change this credentials setting the following envvars:
+
+```
+_AIRFLOW_WWW_USER_USERNAME
+_AIRFLOW_WWW_USER_PASSWORD
+```
+
 ## Contributing
 
 If you want to contribute, you will need to install some dependencies
