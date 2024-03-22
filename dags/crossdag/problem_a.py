@@ -36,7 +36,8 @@ DEFAULT_ARGS = {
 with DAG(dag_id=DAG_NAME,
          default_args=DEFAULT_ARGS,
          dagrun_timeout=timedelta(minutes=10),
-         schedule_interval=None) as dag:
+         schedule_interval=None,
+         tags=["crossdag"]) as dag:
 
     calculate_revenue = EmptyOperator(task_id='operations_calculate_revenue',
                                       dag=dag)
