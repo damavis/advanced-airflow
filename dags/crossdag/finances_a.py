@@ -16,7 +16,7 @@
 from datetime import timedelta
 
 from airflow import DAG
-from airflow.operators.dummy import DummyOperator
+from airflow.operators.empty import EmptyOperator
 from airflow.sensors.external_task import ExternalTaskSensor
 from airflow.utils.dates import days_ago
 
@@ -37,10 +37,10 @@ with DAG(dag_id=DAG_NAME,
          dagrun_timeout=timedelta(minutes=10),
          schedule_interval=None) as dag:
 
-    income_bookkeep = DummyOperator(task_id='income_bookkeep',
+    income_bookkeep = EmptyOperator(task_id='income_bookkeep',
                                     dag=dag)
 
-    validate_income = DummyOperator(task_id='validate_income',
+    validate_income = EmptyOperator(task_id='validate_income',
                                     dag=dag)
 
     wait_operations_a_calculate_expenses = ExternalTaskSensor(
@@ -50,11 +50,11 @@ with DAG(dag_id=DAG_NAME,
         external_task_id='calculate_expenses',
         check_existence=True)
 
-    outcome_bookkeep = DummyOperator(task_id='outcome_bookkeep',
+    outcome_bookkeep = EmptyOperator(task_id='outcome_bookkeep',
                                      dag=dag)
 
 
-    finances_a_report = DummyOperator(task_id='finances_a_report',
+    finances_a_report = EmptyOperator(task_id='finances_a_report',
                                       dag=dag)
 
     income_bookkeep >> validate_income >> wait_operations_a_calculate_expenses
