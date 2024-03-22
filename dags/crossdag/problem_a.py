@@ -18,7 +18,7 @@
 from datetime import timedelta
 
 from airflow import DAG
-from airflow.operators.dummy import DummyOperator
+from airflow.operators.empty import EmptyOperator
 from airflow.utils.dates import days_ago
 
 DAG_NAME = 'problem_a'
@@ -38,25 +38,25 @@ with DAG(dag_id=DAG_NAME,
          dagrun_timeout=timedelta(minutes=10),
          schedule_interval=None) as dag:
 
-    calculate_revenue = DummyOperator(task_id='operations_calculate_revenue',
+    calculate_revenue = EmptyOperator(task_id='operations_calculate_revenue',
                                       dag=dag)
 
-    income_bookkeep = DummyOperator(task_id='finances_income_bookkeep',
+    income_bookkeep = EmptyOperator(task_id='finances_income_bookkeep',
                                     dag=dag)
 
-    validate_income = DummyOperator(task_id='finances_validate_income',
+    validate_income = EmptyOperator(task_id='finances_validate_income',
                                     dag=dag)
 
-    calculate_expenses = DummyOperator(task_id='operations_calculate_expenses',
+    calculate_expenses = EmptyOperator(task_id='operations_calculate_expenses',
                                        dag=dag)
 
-    outcome_bookkeep = DummyOperator(task_id='finances_outcome_bookkeep',
+    outcome_bookkeep = EmptyOperator(task_id='finances_outcome_bookkeep',
                                      dag=dag)
 
-    operations_a_report = DummyOperator(task_id='operations_a_report',
+    operations_a_report = EmptyOperator(task_id='operations_a_report',
                                         dag=dag)
 
-    finance_a_report = DummyOperator(task_id='finance_a_report',
+    finance_a_report = EmptyOperator(task_id='finance_a_report',
                                      dag=dag)
 
     calculate_revenue >> income_bookkeep >> validate_income

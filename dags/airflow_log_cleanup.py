@@ -17,7 +17,7 @@ from airflow.models import DAG, Variable
 
 # airflow-log-cleanup
 from airflow.operators.bash import BashOperator
-from airflow.operators.dummy import DummyOperator
+from airflow.operators.empty import EmptyOperator
 
 DAG_ID = os.path.basename(__file__).replace('.pyc', '').replace('.py', '')
 START_DATE = airflow.utils.dates.days_ago(1)
@@ -94,7 +94,7 @@ if hasattr(dag, 'doc_md'):
 if hasattr(dag, 'catchup'):
     dag.catchup = False
 
-start = DummyOperator(
+start = EmptyOperator(
     task_id='start',
     dag=dag)
 
